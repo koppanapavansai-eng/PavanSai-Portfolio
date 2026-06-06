@@ -12,7 +12,7 @@ const Contact = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["-20%", "30%"]);
 
   return (
-    <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 md:pb-0 border-t border-gray-900">
+    <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-24 pb-0 border-t border-gray-900">
       {/* Huge Background Text */}
       <motion.div 
         style={{ y }}
@@ -30,14 +30,14 @@ const Contact = () => {
       <div className="relative z-10 w-full flex justify-end items-end">
         <div 
           data-aos="fade-up"
-          className="bg-[#ff2a2a] w-full md:w-[85%] lg:w-[75%] p-8 md:p-16 text-white flex flex-col justify-between"
+          className="bg-black w-full md:w-[85%] lg:w-[75%] p-6 sm:p-10 md:p-16 text-white flex flex-col justify-between border-t border-l border-white/10"
         >
           <div className="text-xs font-bold tracking-[0.2em] mb-12 md:mb-20 uppercase opacity-90">
             Reach Us
           </div>
 
-          <form className="flex flex-col gap-12 md:gap-16 w-full">
-            <div className="flex flex-col md:flex-row gap-12 md:gap-20 w-full">
+          <form className="flex flex-col gap-8 sm:gap-12 md:gap-16 w-full">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-20 w-full">
               {/* Left Column */}
               <div className="flex-1 flex flex-col gap-10">
                 <div className="relative">
@@ -105,7 +105,7 @@ const Contact = () => {
                   
                   <button 
                     type="submit" 
-                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto"
+                    className="w-full sm:w-auto px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-black transition-all duration-300 group whitespace-nowrap"
                   >
                     Send
                     <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
