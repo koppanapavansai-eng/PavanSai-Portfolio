@@ -66,13 +66,13 @@ const Hero = () => {
         </video>
 
         {/* 
-          Opaque Sound Controller Button:
+          Opaque Sound Controller Button (Desktop Only):
           Placed exactly over the star (measured at right: 10.1%, bottom: 21% of 16:9 frame).
           This completely blocks the star while providing the audio control.
         */}
         <button
           onClick={toggleSound}
-          className="absolute z-30 w-11 h-11 md:w-18 md:h-18 rounded-full bg-black text-white border border-white/20 flex flex-col justify-center items-center gap-0.5 md:gap-1 cursor-pointer hover:scale-105 hover:bg-zinc-900 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.6)] focus:outline-none"
+          className="hidden md:flex absolute z-30 w-18 h-18 rounded-full bg-black text-white border border-white/20 flex flex-col justify-center items-center gap-1 cursor-pointer hover:scale-105 hover:bg-zinc-900 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.6)] focus:outline-none"
           style={{
             bottom: '21%',
             right: '10.1%',
@@ -82,19 +82,19 @@ const Hero = () => {
           {isMuted ? (
             <>
               {/* Speaker Muted Icon */}
-              <svg className="w-3.5 h-3.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
               </svg>
-              <span className="hidden md:inline text-[9px] uppercase tracking-wider font-medium text-white/70">Sound On</span>
+              <span className="text-[9px] uppercase tracking-wider font-medium text-white/70">Sound On</span>
             </>
           ) : (
             <>
               {/* Speaker Playing Icon */}
-              <svg className="w-3.5 h-3.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
               </svg>
-              <span className="hidden md:inline text-[9px] uppercase tracking-wider font-medium text-white/70">Mute</span>
+              <span className="text-[9px] uppercase tracking-wider font-medium text-white/70">Mute</span>
             </>
           )}
         </button>
@@ -103,13 +103,12 @@ const Hero = () => {
       {/* Subtle vignette — bottom gradient for text legibility */}
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-
       {/* ════════════════════════════════════════
-          MIDDLE-RIGHT — Role & Expertise tags (aligned like image-3)
+          MIDDLE-RIGHT — Role & Expertise tags (aligned like image-3, Desktop only)
       ════════════════════════════════════════ */}
       <div
         data-aos="fade-left"
-        className="absolute top-[38%] right-6 sm:right-12 md:right-16 z-20 flex flex-col items-end gap-1 sm:gap-2 text-right"
+        className="hidden md:flex absolute top-[38%] right-6 sm:right-12 md:right-16 z-20 flex flex-col items-end gap-1 sm:gap-2 text-right"
       >
         <p className="text-white text-sm sm:text-base md:text-lg font-light tracking-wide">
           Full Stack Developer
@@ -129,10 +128,36 @@ const Hero = () => {
         data-aos="fade-up"
         className="absolute bottom-[12%] left-6 sm:left-12 md:left-16 z-20 max-w-[280px] sm:max-w-md md:max-w-xl"
       >
-        <p className="text-white/90 text-base sm:text-lg md:text-2xl font-light leading-relaxed">
+        {/* Mobile-only stacked roles to avoid face overlap in center */}
+        <div className="md:hidden mb-3 flex flex-col gap-0.5">
+          <span className="text-white text-sm font-semibold tracking-wide">Full Stack Developer</span>
+          <span className="text-white/60 text-[11px] tracking-wide">React &amp; Node.js &nbsp;·&nbsp; Open to Work</span>
+        </div>
+
+        <p className="text-white/90 text-sm sm:text-lg md:text-2xl font-light leading-relaxed">
           I build fast, scalable, and modern web applications using React, Node.js, and Tailwind CSS.
         </p>
       </div>
+
+      {/* 
+        Mobile Floating Sound Toggle:
+        Fully visible and accessible at the bottom-right corner on mobile viewports.
+      */}
+      <button
+        onClick={toggleSound}
+        className="md:hidden absolute z-30 bottom-[12%] right-6 w-11 h-11 rounded-full bg-black text-white border border-white/20 flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg focus:outline-none"
+      >
+        {isMuted ? (
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+        ) : (
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+        )}
+      </button>
 
     </section>
   );
